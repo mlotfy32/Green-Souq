@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:green_souq/core/utiles/widgets/customDialog.dart';
+import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:lottie/lottie.dart';
 
 class Helper {
   factory Helper() {
@@ -34,13 +35,11 @@ class Helper {
     );
   }
 
-  //   extention Navigat on BuildContext{
-  //   void getNavigateTo({required Widget child}){
-  //     Get.to(
-  //               () =>
-  //                child,
-  //               transition: Transition.fade,
-  //               curve: Curves.easeInCirc,
-  //             );
-  //   }
+  static customeLoadingDialog({required double size}) {
+    return Get.defaultDialog(
+      title: '',
+      backgroundColor: Colors.white,
+      content: CustomLoadingDialog(size: size),
+    );
+  }
 }

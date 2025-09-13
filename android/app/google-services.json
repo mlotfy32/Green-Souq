@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "104415314856",
+    "project_id": "maps-app-1526c",
+    "storage_bucket": "maps-app-1526c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104415314856:android:f7b8897e6500e99fde139d",
+        "android_client_info": {
+          "package_name": "com.example.green_souq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "104415314856-6edj81tqhjuel4obcvrun69oars03n93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4b5utIAsv2dB2B4A9dr3hdSKPGeSXK3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "104415314856-6edj81tqhjuel4obcvrun69oars03n93.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "104415314856-d7frmfcohphqtd4netvq44glmgk3u6qc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myMaps"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

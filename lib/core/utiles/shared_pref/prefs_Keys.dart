@@ -1,8 +1,12 @@
 class PrefsKeys {
   static const String isLogin = "isLogin";
+  static const String isRememberd = "isRememberd";
+
   static const String accessToken = "accessToken";
-  static const String email = "email";
-  static const String totalHoursCource = "totalHoures";
-  static const String totalHoursCources = "totalHoursCources";
+  static const String userPhone = "userPhone";
+  static const String userName = "userName";
+  static const String userAddress = "userAddress";
+  static const String userPostCode = "userPostCode";
+
   static const String userImage = "userImage";
 }

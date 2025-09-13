@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Loginview extends StatelessWidget {
-  const Loginview({super.key});
+class HomeTap extends StatelessWidget {
+  const HomeTap({super.key});
 
   @override
   Widget build(BuildContext context) {

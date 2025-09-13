@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:green_souq/features/login/presentation/view/loginView.dart';
+import 'package:green_souq/features/auth/login/presentation/view/loginView.dart';
 
 class GreenSouq extends StatelessWidget {
   const GreenSouq({super.key});
