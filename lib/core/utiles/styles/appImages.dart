@@ -14,4 +14,11 @@ class AppImages {
   static const String verify = "assets/images/forgetPass/verify.png";
   static const String resetPass = "assets/images/forgetPass/reset.png";
   static const String success = "assets/images/signUp/Success.json";
+  static const List<String> bottomNavBar = [
+    "assets/images/home/home.svg",
+    "assets/images/home/market.svg",
+    "assets/images/home/cart.svg",
+    "assets/images/home/profile.svg",
+  ];
+  static const String freeCall = "assets/images/home/callCenter.png";
 }

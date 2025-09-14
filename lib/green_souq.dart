@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:green_souq/features/auth/login/presentation/view/loginView.dart';
+import 'package:green_souq/features/home/presentation/cubits/changetap/changetap_cubit.dart';
+import 'package:green_souq/features/home/presentation/view/homeViewBody.dart';
 
 class GreenSouq extends StatelessWidget {
   const GreenSouq({super.key});
@@ -16,7 +19,10 @@ class GreenSouq extends StatelessWidget {
       builder: (_, child) {
         return GetMaterialApp(home: child);
       },
-      child: const Loginview(),
+      child: BlocProvider<ChangetapCubit>(
+        create: (context) => ChangetapCubit(),
+        child: const HomeViewBody(),
+      ),
     );
   }
 }

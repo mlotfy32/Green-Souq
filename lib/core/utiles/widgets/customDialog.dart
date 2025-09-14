@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_souq/core/utiles/extentions/extentions.dart';
 import 'package:green_souq/core/utiles/styles/appImages.dart';
 import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
-import 'package:green_souq/features/home/presentation/view/homeTap.dart';
+import 'package:green_souq/features/home/presentation/view/widgets/homeTap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 

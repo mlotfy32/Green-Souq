@@ -10,7 +10,7 @@ import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
 import 'package:green_souq/features/auth/foregetPass/presentation/view/widgets/customeBackRow.dart';
 import 'package:green_souq/features/auth/foregetPass/presentation/view/widgets/pinCodeText.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
-import 'package:green_souq/features/home/presentation/view/homeTap.dart';
+import 'package:green_souq/features/home/presentation/view/widgets/homeTap.dart';
 
 class OtpVervication extends StatefulWidget {
   const OtpVervication({
