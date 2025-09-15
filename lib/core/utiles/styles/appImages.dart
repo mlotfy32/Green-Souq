@@ -21,4 +21,13 @@ class AppImages {
     "assets/images/home/profile.svg",
   ];
   static const String freeCall = "assets/images/home/callCenter.png";
+
+  static const List<String> servicesImages = [
+    'https://casamiatours.com/wp-content/uploads/2021/03/Schermata-2021-03-19-alle-19.31.44-600x449.png',
+    'https://cdn.mos.cms.futurecdn.net/JvzbiCvazp3sDdrGA6EzYV.jpg',
+    'https://www.estesperformanceconcaves.com/wp-content/uploads/2020/05/manufacturing-of-farming-equipment.png',
+    'https://explorerdubailtd.com/bahrain/wp-content/uploads/sites/13/2023/04/Hire-Ugandan-Farm-Workers-1024x683.jpg',
+    'https://guyanachronicle.com/wp-content/uploads/elementor/thumbs/Shade-house-qv3o6xz94jx1thb6hvfkm0xp7551aldsyhhfe0ka26.jpg',
+    'https://thumbs.dreamstime.com/b/farmer-using-precision-organic-pest-control-equipment-lush-farm-crops-use-natural-substances-avoiding-chemical-299984446.jpg',
+  ];
 }

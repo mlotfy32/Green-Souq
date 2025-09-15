@@ -21,6 +21,11 @@ class FontStyle {
     fontWeight: FontWeight.w400,
     color: Colors.white,
   );
+  static const TextStyle f16w500white = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
   static const TextStyle hinterror = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,

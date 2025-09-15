@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +7,7 @@ import 'package:green_souq/core/utiles/extentions/extentions.dart';
 import 'package:green_souq/features/home/presentation/cubits/changetap/changetap_cubit.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/homeTap.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/cutomBottomNavBar.dart';
+import 'package:green_souq/features/services/presentation/view/servicesTab.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -25,13 +28,12 @@ class HomeViewBody extends StatelessWidget {
                     final cubit = BlocProvider.of<ChangetapCubit>(
                       context,
                     ).newTap;
-                    return
-                    // cubit == 0
-                    // ?
-                    const HomeTap();
-                    // : cubit == 1
-                    // ? const Searchtap()
-                    // : const SaveView();
+                    log(cubit.toString());
+                    return cubit == 0
+                        ? const HomeTap()
+                        : cubit == 1
+                        ? const ServicesTab()
+                        : const ServicesTab();
                   },
                 ),
               ),
@@ -40,10 +42,7 @@ class HomeViewBody extends StatelessWidget {
                 height: 60,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: BlocProvider<ChangetapCubit>(
-                    create: (context) => ChangetapCubit(),
-                    child: const Cutombottomnavbar(),
-                  ),
+                  child: const Cutombottomnavbar(),
                 ),
               ),
             ],

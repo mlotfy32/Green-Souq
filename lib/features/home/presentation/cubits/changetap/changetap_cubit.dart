@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -8,6 +10,7 @@ class ChangetapCubit extends Cubit<ChangetapState> {
   int newTap = 0;
   changeTap({required int tap}) {
     newTap = tap;
+    log('$newTap');
     emit(Changetap());
   }
 }

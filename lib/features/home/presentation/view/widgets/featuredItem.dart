@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
+import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
 
-class FeaturedProductItem extends StatefulWidget {
-  const FeaturedProductItem({super.key});
-
-  @override
-  State<FeaturedProductItem> createState() => _FeaturedProductItemState();
-}
-
-class _FeaturedProductItemState extends State<FeaturedProductItem> {
+class FeaturedProductItem extends StatelessWidget {
+  const FeaturedProductItem({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.servicesType,
+  });
+  final String name;
+  final String image;
+  final String servicesType;
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 5),
+      margin: const EdgeInsets.only(bottom: 5, top: 3),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 222, 245, 223),
         border: Border.all(color: Colors.black12),
@@ -39,11 +42,9 @@ class _FeaturedProductItemState extends State<FeaturedProductItem> {
                     ),
                   ],
                   borderRadius: BorderRadius.circular(15),
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyYopWRZRMOG_LvUSuuAgrvAI4Z2SSj-xgmQ&s',
-                    ),
+                    image: NetworkImage(image),
                   ),
                 ),
               ),
@@ -71,11 +72,18 @@ class _FeaturedProductItemState extends State<FeaturedProductItem> {
               ),
             ],
           ),
-          const Text(' Rice', style: FontStyle.f16w500black),
+          Text(
+            ' $name',
+            style: FontStyle.f16w500black,
+            overflow: TextOverflow.ellipsis,
+          ),
           Row(
             children: [
-              const Text(' 120\$', style: FontStyle.f16w500black),
-              const Text('/kg', style: FontStyle.f14w400gray),
+              Text(
+                ' ${GenerateOtp().generateRandomNumber(2)}\$',
+                style: FontStyle.f16w500black,
+              ),
+              Text('/$servicesType', style: FontStyle.f14w400gray),
               const Spacer(),
               Customelinearbutton(
                 onTap: () {},
@@ -92,3 +100,5 @@ class _FeaturedProductItemState extends State<FeaturedProductItem> {
     );
   }
 }
+
+List<String> servicesType = ['/ke', '/pcs', '/day', '/day', '', ''];

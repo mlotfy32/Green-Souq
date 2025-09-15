@@ -29,12 +29,19 @@ class _HomeTabViewState extends State<HomeTabView> {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: CustomAppBar()),
+          const SliverToBoxAdapter(
+            child: CustomAppBar(title: '', isSearch: false),
+          ),
           const SliverToBoxAdapter(child: CustomSearchRow()),
           const SliverToBoxAdapter(child: CustomerService()),
           const SliverToBoxAdapter(child: FeaturesText()),
           SliverGrid.builder(
-            itemBuilder: (context, index) => const FeaturedProductItem(),
+            itemBuilder: (context, index) => const FeaturedProductItem(
+              servicesType: 'kg',
+              image:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyYopWRZRMOG_LvUSuuAgrvAI4Z2SSj-xgmQ&s',
+              name: ' Rice',
+            ),
             itemCount: 10,
             gridDelegate: delegate,
           ),
