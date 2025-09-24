@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import 'package:green_souq/features/home/presentation/view/widgets/customAppBar.
 import 'package:green_souq/features/home/presentation/view/widgets/featuredItem.dart';
 import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
+import 'package:green_souq/features/services/presentation/view/widget/hire_workers.dart';
 import 'package:green_souq/features/services/presentation/view/widget/servicesDetailes.dart';
 
 class ServicesCategory extends StatefulWidget {
@@ -37,6 +40,7 @@ class _ServicesCategoryState extends State<ServicesCategory> {
       'Cultivation Process': '',
       'Crop Disease Solution': '',
     };
+    log('name ${widget.title}');
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -70,12 +74,20 @@ class _ServicesCategoryState extends State<ServicesCategory> {
                                   create: (context) => GetcategoryimagesCubit(
                                     sl.get<FeatchImageUseCase>(),
                                   ),
-                                  child: ServicesDetailes(
-                                    servicesType: servicesType[widget.title]!,
+                                  child: widget.title == 'Hire Worker'
+                                      ? HireWorkers(
+                                          image: state.images[index].image,
+                                          title: widget.title,
+                                          servicesType:
+                                              servicesType[widget.title]!,
+                                        )
+                                      : ServicesDetailes(
+                                          servicesType:
+                                              servicesType[widget.title]!,
 
-                                    imageUrl: state.images[index].image,
-                                    search: state.images[index].name,
-                                  ),
+                                          imageUrl: state.images[index].image,
+                                          search: state.images[index].name,
+                                        ),
                                 ),
                               ),
                               child: FeaturedProductItem(

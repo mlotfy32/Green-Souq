@@ -12,7 +12,7 @@ class Apiservice {
     required String endPoint,
   }) async {
     final response = await _dio.get(
-      'https://api.unsplash.com/search/photos?query=seeds&client_id=3VNN_qlVDU4cXcUbrgJQxd0VbtREId2GZU61Xc2KmAc',
+      'https://api.unsplash.com/search/photos?query=$search&client_id=3VNN_qlVDU4cXcUbrgJQxd0VbtREId2GZU61Xc2KmAc',
       options: Options(headers: {'Content-Type': 'application/json'}),
     );
     log('$baseUrl$search$endPoint');

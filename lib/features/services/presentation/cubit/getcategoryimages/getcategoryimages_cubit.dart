@@ -1,8 +1,6 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:green_souq/core/utiles/services/apiService.dart';
-import 'package:green_souq/features/services/data/models/imagesModel.dart';
 import 'package:green_souq/features/services/domain/entites/images_entite.dart';
 import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 import 'package:meta/meta.dart';
@@ -17,7 +15,7 @@ class GetcategoryimagesCubit extends Cubit<GetcategoryimagesState> {
     emit(GetcategoryimagesLoading());
     search = search == 'Machinery' ? 'Machinery Farm' : search;
     search = search == 'Hire Worker' ? 'Hire Farm Workers' : search;
-    log(search);
+    log('search $search');
     final result = await featchImageUseCase.call(search);
     result.fold(
       (failure) {

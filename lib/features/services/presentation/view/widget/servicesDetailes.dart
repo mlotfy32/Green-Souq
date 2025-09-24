@@ -9,7 +9,6 @@ import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 import 'package:green_souq/features/services/presentation/view/widget/customCountRow.dart';
-import 'package:green_souq/features/services/presentation/view/widget/customIconButton.dart';
 
 class ServicesDetailes extends StatefulWidget {
   const ServicesDetailes({

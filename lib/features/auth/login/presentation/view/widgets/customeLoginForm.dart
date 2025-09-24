@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:green_souq/core/utiles/widgets/3.3%20custom_text_field.dart';
 import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
-import 'package:green_souq/features/auth/foregetPass/data/sendSmsOtp.dart';
 import 'package:green_souq/features/auth/login/data/userDataModel/getUserData.dart';
 import 'package:green_souq/features/auth/login/presentation/cubit/passwordvisability/passwordvisability_cubit.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
@@ -141,8 +138,6 @@ class CustomeLoginForm extends StatelessWidget {
                               phone: phone.text,
                               signInMethod: 'phone',
                             );
-                            log('$state');
-
                             if (state) {
                               Get.to(
                                 () => BlocProvider<UplodimageCubit>(

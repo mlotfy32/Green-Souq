@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:green_souq/core/utiles/services/apiService.dart';
 import 'package:green_souq/core/utiles/services/dio_factory.dart';
-import 'package:green_souq/features/services/data/data_source/local_data_source.dart';
 import 'package:green_souq/features/services/data/data_source/remote_data_source.dart';
 import 'package:green_souq/features/services/data/rebo/services_rebo_imp.dart';
 import 'package:green_souq/features/services/domain/rebo/services_rebo.dart';
@@ -14,7 +13,6 @@ void SetupServiceLocator() {
 
   sl.registerSingleton<ServicesRebo>(
     ServicesReboImp(
-      // servicesLocalDataSource: LocalDataSource(),
       servicesRemoteDataSource: ServicesRemoteDataSourceImp(
         apiservice: sl.get<Apiservice>(),
       ),

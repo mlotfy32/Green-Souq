@@ -4,8 +4,8 @@ class ImagesModel extends ImagesEntite {
   ImagesModel({required super.image, required super.name});
   factory ImagesModel.fromJson(data) {
     return ImagesModel(
-      image: data['urls']['raw'],
-      name: data['alt_description'],
+      image: data['urls']['raw'] ?? 'noData',
+      name: data['alt_description'] ?? 'noData',
     );
   }
 }
