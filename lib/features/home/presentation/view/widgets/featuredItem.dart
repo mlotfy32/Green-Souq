@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
@@ -28,26 +30,24 @@ class FeaturedProductItem extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: 140,
+              SizedBox(
                 height: 180,
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 1,
-                      offset: Offset(0, 3),
-                      blurStyle: BlurStyle.inner,
-                      spreadRadius: 0.1,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
+                width: 140,
+                child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(15),
+                  child: CachedNetworkImage(
+                    width: double.infinity,
+                    height: double.infinity,
                     fit: BoxFit.cover,
-                    image: NetworkImage(image),
+                    imageUrl: image,
+                    placeholder: (context, url) =>
+                        const Center(child: CustomLoadingDialog(size: 40)),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: InkWell(

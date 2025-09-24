@@ -9,11 +9,11 @@ import 'package:green_souq/features/services/domain/entites/images_entite.dart';
 import 'package:green_souq/features/services/domain/rebo/services_rebo.dart';
 
 class ServicesReboImp extends ServicesRebo {
-  final ServicesLocalDataSource servicesLocalDataSource;
+  // final ServicesLocalDataSource servicesLocalDataSource;
   final ServicesRemoteDataSource servicesRemoteDataSource;
 
   ServicesReboImp({
-    required this.servicesLocalDataSource,
+    // required this.servicesLocalDataSource,
     required this.servicesRemoteDataSource,
   });
   @override
@@ -24,12 +24,12 @@ class ServicesReboImp extends ServicesRebo {
     log('hasData $search');
 
     try {
-      images = await servicesLocalDataSource.featchImages();
-      if (images.isNotEmpty) {
-        log('hasData');
-        return right(images);
-      }
-      log('noData');
+      // images = await servicesLocalDataSource.featchImages();
+      // if (images.isNotEmpty) {
+      //   log('hasData');
+      //   return right(images);
+      // }
+      // log('noData');
 
       images = await servicesRemoteDataSource.featchImages(search: search!);
       return right(images);

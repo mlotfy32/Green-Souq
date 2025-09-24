@@ -14,7 +14,7 @@ void SetupServiceLocator() {
 
   sl.registerSingleton<ServicesRebo>(
     ServicesReboImp(
-      servicesLocalDataSource: LocalDataSource(),
+      // servicesLocalDataSource: LocalDataSource(),
       servicesRemoteDataSource: ServicesRemoteDataSourceImp(
         apiservice: sl.get<Apiservice>(),
       ),

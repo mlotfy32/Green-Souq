@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -61,17 +62,22 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
+              SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(15),
+                  child: CachedNetworkImage(
+                    width: double.infinity,
+                    height: double.infinity,
                     fit: BoxFit.cover,
-                    image: NetworkImage(widget.imageUrl),
+                    imageUrl: widget.imageUrl,
+                    placeholder: (context, url) =>
+                        const Center(child: CustomLoadingDialog(size: 40)),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
-                width: double.infinity,
-                height: 200,
               ),
               Text(widget.search, style: FontStyle.f16w500black),
               Row(
