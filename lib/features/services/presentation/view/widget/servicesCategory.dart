@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:green_souq/core/utiles/extentions/extentions.dart';
+import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customAppBar.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/featuredItem.dart';
+import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/features/services/presentation/view/widget/servicesDetailes.dart';
 
@@ -65,7 +67,9 @@ class _ServicesCategoryState extends State<ServicesCategory> {
                             itemBuilder: (context, index) => InkWell(
                               onTap: () => Get.to(
                                 () => BlocProvider<GetcategoryimagesCubit>(
-                                  create: (context) => GetcategoryimagesCubit(),
+                                  create: (context) => GetcategoryimagesCubit(
+                                    sl.get<FeatchImageUseCase>(),
+                                  ),
                                   child: ServicesDetailes(
                                     servicesType: servicesType[widget.title]!,
 

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Customelinearbutton extends StatelessWidget {
-  const Customelinearbutton(
-      {super.key,
-      required this.onTap,
-      required this.child,
-      required this.width,
-      required this.height,
-      required this.color});
+  const Customelinearbutton({
+    super.key,
+    required this.onTap,
+    required this.child,
+    required this.width,
+    required this.height,
+    required this.color,
+  });
   final Function()? onTap;
   final Widget child;
   final double width;
@@ -25,8 +26,9 @@ class Customelinearbutton extends StatelessWidget {
         height: height.h,
         decoration: ShapeDecoration(
           color: color,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
         child: Center(child: child),
       ),

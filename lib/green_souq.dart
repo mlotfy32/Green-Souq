@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:green_souq/call.dart';
-import 'package:green_souq/features/auth/login/presentation/view/loginView.dart';
 import 'package:green_souq/features/home/presentation/cubits/changetap/changetap_cubit.dart';
 import 'package:green_souq/features/home/presentation/view/homeViewBody.dart';
 

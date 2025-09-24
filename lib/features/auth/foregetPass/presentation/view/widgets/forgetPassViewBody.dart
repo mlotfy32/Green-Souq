@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:green_souq/core/utiles/extentions/extentions.dart';
 import 'package:green_souq/core/utiles/styles/appImages.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
@@ -37,13 +38,13 @@ class _ForgetPassViewBodyState extends State<ForgetPassViewBody> {
             Image.asset(
               AppImages.forgetPass,
               width: context.getWidth(context: context) - 100,
-              height: context.getHeight(context: context) / 2.5,
+              height: context.getHeight(context: context) / 2.5.h,
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             const Text(
               'Please enter your phone numper. we will sent a code to your numper to reset your password',
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Form(
               key: key,
               child: CustomTextField(
@@ -60,7 +61,7 @@ class _ForgetPassViewBodyState extends State<ForgetPassViewBody> {
                 hintText: 'Enter phone numper',
               ),
             ),
-            const SizedBox(height: 170),
+            SizedBox(height: 170.h),
             Customelinearbutton(
               onTap: () async {
                 if (key.currentState!.validate()) {
@@ -79,10 +80,10 @@ class _ForgetPassViewBodyState extends State<ForgetPassViewBody> {
                 ),
               ),
               width: double.infinity,
-              height: 50,
+              height: 50.h,
               color: const Color(0xffFF01B252),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
           ],
         ),
       ),

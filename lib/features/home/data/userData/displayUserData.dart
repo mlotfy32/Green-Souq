@@ -4,7 +4,7 @@ import 'package:green_souq/main.dart';
 class DisplayUserData {
   getUserData() {
     final name = prefs.getString(PrefsKeys.userName);
-    return name!;
+    return name == null ? 'Mhmd' : name;
     //TODO:GetData
     // final phone = await prefs.getInt(PrefsKeys.userPhone);
     // final name = await prefs.getString(PrefsKeys.userName);

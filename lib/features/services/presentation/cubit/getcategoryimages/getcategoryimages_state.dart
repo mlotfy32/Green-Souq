@@ -8,7 +8,7 @@ class GetcategoryimagesInitial extends GetcategoryimagesState {}
 class GetcategoryimagesLoading extends GetcategoryimagesState {}
 
 class GetcategoryimagesSuccess extends GetcategoryimagesState {
-  final List<ImagesModel> images;
+  final List<ImagesEntite> images;
 
   GetcategoryimagesSuccess({required this.images});
 }
