@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:green_souq/features/home/data/userData/displayUserData.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 

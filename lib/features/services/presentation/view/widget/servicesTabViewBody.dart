@@ -18,7 +18,7 @@ class ServicesTabViewBody extends StatelessWidget {
               child: CustomAppBar(title: 'Services', isSearch: true),
             ),
             SizedBox(
-              height: context.getHeight(context: context) - 151,
+              height: context.getHeight(context: context) - 159,
               child: CustomScrollView(
                 slivers: [
                   SliverGrid.builder(

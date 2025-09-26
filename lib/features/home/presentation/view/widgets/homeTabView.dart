@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:green_souq/core/utiles/extentions/extentions.dart';
-import 'package:green_souq/core/utiles/styles/appImages.dart';
-import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customAppBar.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customSearchRow.dart';
-import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customerService.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/featuredItem.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/featuredText.dart';
