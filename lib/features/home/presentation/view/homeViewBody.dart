@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_souq/core/utiles/extentions/extentions.dart';
+import 'package:green_souq/features/cart/presentation/view/cart_tap.dart';
 import 'package:green_souq/features/home/presentation/cubits/changetap/changetap_cubit.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/homeTap.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/cutomBottomNavBar.dart';
@@ -30,9 +31,9 @@ class HomeViewBody extends StatelessWidget {
                         ? const HomeTap()
                         : cubit == 1
                         ? const ServicesTab()
-                        : cubit == 3
-                        ? const ProfileTap()
-                        : const ServicesTab();
+                        : cubit == 2
+                        ? const CartTap()
+                        : const ProfileTap();
                   },
                 ),
               ),

@@ -1,14 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:green_souq/core/utiles/extentions/extentions.dart';
-import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
-import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
+import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
-import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
-import 'package:green_souq/features/services/presentation/view/widget/customCountRow.dart';
+import 'package:green_souq/features/cart/presentation/cubit/addtocart/addtocart_cubit.dart';
+import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
+import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
+import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
+import 'package:green_souq/features/services/presentation/view/widget/customIconButton.dart';
+import 'package:green_souq/features/services/presentation/view/widget/detailes_appbar.dart';
+import 'package:green_souq/features/services/presentation/view/widget/detailes_top_part.dart';
+import 'package:green_souq/features/services/presentation/view/widget/linear_button.dart';
+import 'package:green_souq/features/services/presentation/view/widget/related_products.dart';
 
 class ServicesDetailes extends StatefulWidget {
   const ServicesDetailes({
@@ -26,71 +29,24 @@ class ServicesDetailes extends StatefulWidget {
 
 class _ServicesDetailesState extends State<ServicesDetailes> {
   @override
-  void initState() {
-    BlocProvider.of<GetcategoryimagesCubit>(
-      context,
-    ).getImages(search: widget.search);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    int price = GenerateOtp().generateRandomNumber(2);
     int count = 1;
+    List amountList = [];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              context.navigateBack(context: context);
-            },
-            icon: const Icon(Icons.arrow_back_ios, size: 30),
-          ),
-          title: const Text('Details', style: FontStyle.f22w500black),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(FontAwesomeIcons.bookmark),
-            ),
-          ],
-        ),
+        appBar: const DetailesAppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: BorderRadiusGeometry.circular(15),
-                  child: CachedNetworkImage(
-                    width: double.infinity,
-                    height: double.infinity,
-                    fit: BoxFit.cover,
-                    imageUrl: widget.imageUrl,
-                    placeholder: (context, url) =>
-                        const Center(child: CustomLoadingDialog(size: 40)),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                  ),
-                ),
-              ),
-              Text(widget.search, style: FontStyle.f16w500black),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Available in stock',
-                    style: FontStyle.f14w400gray.copyWith(color: Colors.green),
-                  ),
-                  Text(
-                    '${GenerateOtp().generateRandomNumber(2)}\$ ${widget.servicesType}',
-                    style: FontStyle.f16w500black,
-                  ),
-                ],
+              DetailesTopPart(
+                price: price,
+                servicesType: widget.servicesType,
+                imageUrl: widget.imageUrl,
+                search: widget.search,
               ),
               const SizedBox(height: 10),
               Row(
@@ -100,11 +56,40 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
                     '⭐ ${GenerateOtp().generateRandomNumber(1)}.${GenerateOtp().generateRandomNumber(1)} (${GenerateOtp().generateRandomNumber(3)})',
                     style: FontStyle.f14w400gray,
                   ),
-                  CustomCountRow(servicesType: widget.servicesType),
+                  Row(
+                    children: [
+                      CustomIconButton(
+                        icon: Icons.remove,
+                        onPressed: () {
+                          BlocProvider.of<ChangeAmoutCubit>(
+                            context,
+                          ).changeAmount(count: count > 1 ? --count : count);
+                        },
+                      ),
+                      BlocBuilder<ChangeAmoutCubit, ChangeAmoutState>(
+                        builder: (context, state) {
+                          final amount = BlocProvider.of<ChangeAmoutCubit>(
+                            context,
+                          ).amount;
+                          amountList.add(amount);
+                          return Text(
+                            '  ${amount == null ? 1 : amount} /${widget.servicesType}',
+                          );
+                        },
+                      ),
+                      CustomIconButton(
+                        icon: Icons.add,
+                        onPressed: () {
+                          BlocProvider.of<ChangeAmoutCubit>(
+                            context,
+                          ).changeAmount(count: ++count);
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
               const Text('Description', style: FontStyle.f22w500black),
-
               const SizedBox(
                 width: double.infinity,
                 height: 150,
@@ -113,64 +98,24 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
                   overflow: TextOverflow.clip,
                 ),
               ),
+              const Spacer(),
               const Text('Related Products', style: FontStyle.f22w500black),
-              SizedBox(
-                height: 90,
-
-                child:
-                    BlocBuilder<GetcategoryimagesCubit, GetcategoryimagesState>(
-                      builder: (context, state) {
-                        if (state is GetcategoryimagesFailure) {
-                          return Text(state.error);
-                        }
-                        if (state is GetcategoryimagesSuccess) {
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            itemCount: state.images.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 2,
-                                vertical: 3,
-                              ),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: const Color.fromARGB(
-                                    255,
-                                    225,
-                                    241,
-                                    226,
-                                  ),
-                                  width: 1.5,
-                                ),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    state.images[index].image,
-                                  ),
-                                ),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              width: 100,
-                            ),
-                          );
-                        }
-                        return const Center(
-                          child: CustomLoadingDialog(size: 60),
-                        );
-                      },
-                    ),
+              BlocProvider(
+                create: (context) =>
+                    GetcategoryimagesCubit(sl.get<FeatchImageUseCase>()),
+                child: RelatedProducts(search: widget.search),
               ),
-              Customelinearbutton(
-                onTap: () {},
-                child: Text(
-                  'Add to cart',
-                  style: FontStyle.f22w500black.copyWith(color: Colors.white),
+              const Spacer(),
+              BlocProvider<AddtocartCubit>(
+                create: (context) => AddtocartCubit(),
+                child: LinearButton(
+                  iamgeUrl: widget.imageUrl,
+                  search: widget.search,
+                  price: price,
+                  servicesType: widget.servicesType,
                 ),
-                width: double.infinity,
-                height: 55,
-                color: Colors.green,
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ),

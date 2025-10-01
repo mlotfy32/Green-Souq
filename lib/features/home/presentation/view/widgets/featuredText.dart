@@ -10,7 +10,10 @@ class FeaturesText extends StatelessWidget {
       children: [
         const Text('Featured Products', style: FontStyle.f22w500black),
         const Spacer(),
-        TextButton(onPressed: () {}, child: const Text('see all')),
+        TextButton(
+          onPressed: () {},
+          child: const Text('see all', style: TextStyle(color: Colors.green)),
+        ),
       ],
     );
   }

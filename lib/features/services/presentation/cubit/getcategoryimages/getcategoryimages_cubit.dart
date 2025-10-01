@@ -14,6 +14,7 @@ class GetcategoryimagesCubit extends Cubit<GetcategoryimagesState> {
   getImages({required String search}) async {
     emit(GetcategoryimagesLoading());
     search = search == 'Machinery' ? 'Machinery Farm' : search;
+    search = search == 'Worker' ? 'Workers Farm' : search;
     search = search == 'Hire Worker' ? 'Hire Farm Workers' : search;
     log('search $search');
     final result = await featchImageUseCase.call(search);

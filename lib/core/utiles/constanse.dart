@@ -4,5 +4,5 @@ class Constanse {
   }
   Constanse._internal();
   static final Constanse _instance = Constanse._internal();
-  static const kImagesBox = 'ImagesBox';
+  static const kCartBox = 'CartBox';
 }

@@ -46,6 +46,6 @@ class CustomSettingList extends StatelessWidget {
     Icons.history_edu,
     Icons.settings,
     FontAwesomeIcons.shieldHalved,
-    FontAwesomeIcons.arrowRightLong,
+    Icons.logout_rounded,
   ];
 }

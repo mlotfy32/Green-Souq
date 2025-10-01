@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:green_souq/core/utiles/extentions/extentions.dart';
+import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customAppBar.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customSearchRow.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customerService.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/featuredItem.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/featuredText.dart';
+import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
+import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
+import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
+import 'package:green_souq/features/services/presentation/view/widget/servicesDetailes.dart';
 
 class HomeTabView extends StatefulWidget {
   const HomeTabView({super.key});
@@ -32,13 +39,27 @@ class _HomeTabViewState extends State<HomeTabView> {
           const SliverToBoxAdapter(child: CustomerService()),
           const SliverToBoxAdapter(child: FeaturesText()),
           SliverGrid.builder(
-            itemBuilder: (context, index) => const FeaturedProductItem(
-              servicesType: 'kg',
-              image:
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyYopWRZRMOG_LvUSuuAgrvAI4Z2SSj-xgmQ&s',
-              name: ' Rice',
+            itemBuilder: (context, index) => InkWell(
+              onTap: () {
+                context.navigateTo(
+                  context: context,
+                  child: BlocProvider<ChangeAmoutCubit>(
+                    create: (context) => ChangeAmoutCubit(),
+                    child: ServicesDetailes(
+                      search: name[index],
+                      imageUrl: images[index],
+                      servicesType: servicesType[index],
+                    ),
+                  ),
+                );
+              },
+              child: FeaturedProductItem(
+                servicesType: 'kg',
+                image: images[index],
+                name: ' ${name[index]}',
+              ),
             ),
-            itemCount: 10,
+            itemCount: 4,
             gridDelegate: delegate,
           ),
         ],
@@ -46,3 +67,12 @@ class _HomeTabViewState extends State<HomeTabView> {
     );
   }
 }
+
+List<String> images = [
+  'https://gonefarmers.com/cdn/shop/products/image_0bef0c27-a579-49da-90f2-b1fe09ac2ba0_2048x.jpg?v=1658638294',
+  'https://www.thespruce.com/thmb/83Wv7sU2ccdWKuydlsQ82hxoITo=/6016x0/filters:no_upscale():max_bytes(150000):strip_icc()/lime-tree-care-guide-7554268-hero-8172d0f06fa14b3a87543d341a874a0a.JPG',
+  'https://images.unsplash.com/photo-1614977645968-6db1d7798ac7?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFybSUyMG1hY2hpbmVyeXxlbnwwfHwwfHx8MA%3D%3D',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiiEMJt0goFpJ447nwCB4IQtduj9fGjmSYqAdImtQrtJG9_v7sEMClhVir9JH5nrHJkyY&usqp=CAU',
+];
+List<String> name = ['Rice Seeds', 'Lime', 'Machinery', 'Worker'];
+List<String> servicesType = ['kg', 'kg', 'day', 'day'];

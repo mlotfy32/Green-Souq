@@ -1,0 +1,70 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
+import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
+
+class RelatedProducts extends StatefulWidget {
+  const RelatedProducts({super.key, required this.search});
+  final String search;
+  @override
+  State<RelatedProducts> createState() => _RelatedProductsState();
+}
+
+class _RelatedProductsState extends State<RelatedProducts> {
+  @override
+  void initState() {
+    BlocProvider.of<GetcategoryimagesCubit>(
+      context,
+    ).getImages(search: widget.search);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 90,
+
+      child: BlocBuilder<GetcategoryimagesCubit, GetcategoryimagesState>(
+        builder: (context, state) {
+          if (state is GetcategoryimagesFailure) {
+            return Text(state.error);
+          }
+          if (state is GetcategoryimagesSuccess) {
+            return ListView.builder(
+              padding: EdgeInsets.zero,
+              itemCount: state.images.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Container(
+                margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2,
+                    color: const Color.fromARGB(255, 216, 244, 216),
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(15),
+                  child: CachedNetworkImage(
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                    imageUrl: state.images[index].image,
+                    placeholder: (context, url) =>
+                        const Center(child: CustomLoadingDialog(size: 40)),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                ),
+
+                width: 100,
+              ),
+            );
+          }
+          return const Center(child: CustomLoadingDialog(size: 60));
+        },
+      ),
+    );
+  }
+}

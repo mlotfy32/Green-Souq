@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:green_souq/core/utiles/extentions/extentions.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
@@ -7,7 +8,8 @@ import 'package:green_souq/core/utiles/widgets/3.3%20custom_text_field.dart';
 import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
 import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
-import 'package:green_souq/features/services/presentation/view/widget/customCountRow.dart';
+import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
+import 'package:green_souq/features/services/presentation/view/widget/customIconButton.dart';
 import 'package:green_souq/features/services/presentation/view/widget/hire_workers_fore.dart';
 
 class HireWorkers extends StatefulWidget {
@@ -26,13 +28,29 @@ class HireWorkers extends StatefulWidget {
 }
 
 class _HireWorkersState extends State<HireWorkers> {
-  TextEditingController location = TextEditingController();
-  TextEditingController type = TextEditingController();
-  TextEditingController houre = TextEditingController();
+  late TextEditingController location;
+  late TextEditingController type;
+  late TextEditingController houre;
   final formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    location = TextEditingController();
+    type = TextEditingController();
+    houre = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    location.dispose();
+    type.dispose();
+    houre.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    int count = 1;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -65,7 +83,7 @@ class _HireWorkersState extends State<HireWorkers> {
                   child: CachedNetworkImage(
                     width: double.infinity,
                     height: double.infinity,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     imageUrl: widget.image,
                     placeholder: (context, url) =>
                         const Center(child: CustomLoadingDialog(size: 40)),
@@ -96,7 +114,36 @@ class _HireWorkersState extends State<HireWorkers> {
                     '⭐ ${GenerateOtp().generateRandomNumber(1)}.${GenerateOtp().generateRandomNumber(1)} (${GenerateOtp().generateRandomNumber(3)})',
                     style: FontStyle.f14w400gray,
                   ),
-                  CustomCountRow(servicesType: widget.servicesType),
+                  Row(
+                    children: [
+                      CustomIconButton(
+                        icon: Icons.remove,
+                        onPressed: () {
+                          BlocProvider.of<ChangeAmoutCubit>(
+                            context,
+                          ).changeAmount(count: count > 1 ? --count : count);
+                        },
+                      ),
+                      BlocBuilder<ChangeAmoutCubit, ChangeAmoutState>(
+                        builder: (context, state) {
+                          final amount = BlocProvider.of<ChangeAmoutCubit>(
+                            context,
+                          ).amount;
+                          return Text(
+                            '  ${amount == null ? 1 : widget.servicesType} ',
+                          );
+                        },
+                      ),
+                      CustomIconButton(
+                        icon: Icons.add,
+                        onPressed: () {
+                          BlocProvider.of<ChangeAmoutCubit>(
+                            context,
+                          ).changeAmount(count: ++count);
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
               const Text('Information', style: FontStyle.f22w500black),
