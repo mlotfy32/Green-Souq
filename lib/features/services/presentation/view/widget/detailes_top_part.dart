@@ -45,7 +45,7 @@ class DetailesTopPart extends StatelessWidget {
               'Available in stock',
               style: FontStyle.f14w400gray.copyWith(color: Colors.green),
             ),
-            Text('$price\$ $servicesType', style: FontStyle.f16w500black),
+            Text('$price\$ /$servicesType', style: FontStyle.f16w500black),
           ],
         ),
       ],

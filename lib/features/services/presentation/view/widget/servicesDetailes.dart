@@ -4,6 +4,8 @@ import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 import 'package:green_souq/features/cart/presentation/cubit/addtocart/addtocart_cubit.dart';
+import 'package:green_souq/features/prefile/data/models/saved_model.dart';
+import 'package:green_souq/features/prefile/presentation/cubits/saved/saved_cubit.dart';
 import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
@@ -19,10 +21,12 @@ class ServicesDetailes extends StatefulWidget {
     required this.search,
     required this.imageUrl,
     required this.servicesType,
+    required this.isSaved,
   });
   final String search;
   final String imageUrl;
   final String servicesType;
+  final bool isSaved;
   @override
   State<ServicesDetailes> createState() => _ServicesDetailesState();
 }
@@ -31,17 +35,30 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
   @override
   Widget build(BuildContext context) {
     int price = GenerateOtp().generateRandomNumber(2);
+    String rating =
+        '⭐ ${GenerateOtp().generateRandomNumber(1)}.${GenerateOtp().generateRandomNumber(1)} (${GenerateOtp().generateRandomNumber(3)})';
     int count = 1;
     List amountList = [];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: const DetailesAppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              BlocProvider<SavedCubit>(
+                create: (context) => SavedCubit(),
+                child: DetailesAppBar(
+                  isSaved: widget.isSaved,
+                  description: 'No Description',
+                  imageUrl: widget.imageUrl,
+                  name: widget.search,
+                  price: price.toString(),
+                  rating: rating,
+                  servicesType: widget.servicesType,
+                ),
+              ),
               DetailesTopPart(
                 price: price,
                 servicesType: widget.servicesType,
@@ -52,10 +69,7 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '⭐ ${GenerateOtp().generateRandomNumber(1)}.${GenerateOtp().generateRandomNumber(1)} (${GenerateOtp().generateRandomNumber(3)})',
-                    style: FontStyle.f14w400gray,
-                  ),
+                  Text(rating, style: FontStyle.f14w400gray),
                   Row(
                     children: [
                       CustomIconButton(
@@ -73,7 +87,7 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
                           ).amount;
                           amountList.add(amount);
                           return Text(
-                            '  ${amount == null ? 1 : amount} /${widget.servicesType}',
+                            '  ${amount == null ? 1 : amount} /${widget.servicesType} ',
                           );
                         },
                       ),
@@ -103,7 +117,10 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
               BlocProvider(
                 create: (context) =>
                     GetcategoryimagesCubit(sl.get<FeatchImageUseCase>()),
-                child: RelatedProducts(search: widget.search),
+                child: RelatedProducts(
+                  search: widget.search,
+                  servicesType: widget.servicesType,
+                ),
               ),
               const Spacer(),
               BlocProvider<AddtocartCubit>(

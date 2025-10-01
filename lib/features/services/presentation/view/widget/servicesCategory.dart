@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:green_souq/core/utiles/extentions/extentions.dart';
-import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/customAppBar.dart';
 import 'package:green_souq/features/home/presentation/view/widgets/featuredItem.dart';
-import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/features/services/presentation/view/widget/hire_workers.dart';
@@ -44,7 +42,7 @@ class _ServicesCategoryState extends State<ServicesCategory> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3),
-          child: Column(
+          child: ListView(
             children: [
               SizedBox(
                 height: 50,
@@ -75,11 +73,14 @@ class _ServicesCategoryState extends State<ServicesCategory> {
                                           image: state.images[index].image,
                                           title: widget.title,
                                           servicesType:
-                                              servicesType[widget.title]!,
+                                              servicesType[widget.title] ??
+                                              'kg',
                                         )
                                       : ServicesDetailes(
+                                          isSaved: false,
                                           servicesType:
-                                              servicesType[widget.title]!,
+                                              servicesType[widget.title] ??
+                                              'kg',
 
                                           imageUrl: state.images[index].image,
                                           search: state.images[index].name,

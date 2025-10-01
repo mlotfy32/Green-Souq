@@ -46,6 +46,8 @@ class _HomeTabViewState extends State<HomeTabView> {
                   child: BlocProvider<ChangeAmoutCubit>(
                     create: (context) => ChangeAmoutCubit(),
                     child: ServicesDetailes(
+                      isSaved: false,
+
                       search: name[index],
                       imageUrl: images[index],
                       servicesType: servicesType[index],
