@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
+import 'package:green_souq/features/services/domain/use_case/featch_disease_video_use_case.dart';
 import 'package:green_souq/features/services/presentation/cubit/disease/disease_cubit.dart';
+import 'package:green_souq/features/services/presentation/cubit/diseaseVideo/cources_cubit.dart';
+import 'package:green_souq/features/services/presentation/view/widget/corp_disease_view_body.dart';
 
 class CropDisease extends StatefulWidget {
   const CropDisease({super.key, required this.image});
@@ -26,8 +30,13 @@ class _CropDiseaseState extends State<CropDisease> {
           if (state is DiseaseFailure) {
             return Center(child: Text(state.error));
           } else if (state is DiseaseSuccess) {
-            return Center(
-              child: Text(state.disease[0].common_names.first.toString()),
+            return BlocProvider<CourcesCubit>(
+              create: (context) =>
+                  CourcesCubit(sl.get<FeatchDiseaseVideoUseCase>()),
+              child: CorpDiseaseViewBody(
+                disease: state.disease,
+                image: widget.image,
+              ),
             );
           }
           return const Center(child: CustomLoadingDialog(size: 60));

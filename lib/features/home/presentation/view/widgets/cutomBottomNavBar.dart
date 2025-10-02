@@ -19,17 +19,18 @@ class Cutombottomnavbar extends StatelessWidget {
           return BlocBuilder<ChangetapCubit, ChangetapState>(
             builder: (context, state) {
               final cubit = BlocProvider.of<ChangetapCubit>(context).newTap;
-              return Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.zero,
-                    child: IconButton(
-                      onPressed: () {
-                        BlocProvider.of<ChangetapCubit>(
-                          context,
-                        ).changeTap(tap: value.key);
-                      },
-                      icon: SvgPicture.asset(
+              return InkWell(
+                onTap: () {
+                  BlocProvider.of<ChangetapCubit>(
+                    context,
+                  ).changeTap(tap: value.key);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.zero,
+                      child: SvgPicture.asset(
                         AppImages.bottomNavBar[value.key],
                         width: 25,
                         height: 25,
@@ -38,17 +39,17 @@ class Cutombottomnavbar extends StatelessWidget {
                             : Colors.grey,
                       ),
                     ),
-                  ),
-                  Text(
-                    featuresNames[value.key],
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: cubit == value.key
-                          ? const Color(0xffFF01B252)
-                          : Colors.grey,
+                    Text(
+                      featuresNames[value.key],
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: cubit == value.key
+                            ? const Color(0xffFF01B252)
+                            : Colors.grey,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           );

@@ -5,6 +5,7 @@ import 'package:green_souq/features/services/data/data_source/remote_data_source
 import 'package:green_souq/features/services/data/rebo/services_rebo_imp.dart';
 import 'package:green_souq/features/services/domain/rebo/services_rebo.dart';
 import 'package:green_souq/features/services/domain/use_case/featch_disease_usecase.dart';
+import 'package:green_souq/features/services/domain/use_case/featch_disease_video_use_case.dart';
 import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 
 final sl = GetIt.instance;
@@ -24,5 +25,8 @@ void SetupServiceLocator() {
   );
   sl.registerSingleton<FeatchDiseaseUsecase>(
     FeatchDiseaseUsecase(servicesRebo: sl.get<ServicesRebo>()),
+  );
+  sl.registerSingleton<FeatchDiseaseVideoUseCase>(
+    FeatchDiseaseVideoUseCase(servicesRebo: sl.get<ServicesRebo>()),
   );
 }

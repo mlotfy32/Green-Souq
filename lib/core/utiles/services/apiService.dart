@@ -18,6 +18,14 @@ class Apiservice {
     return response.data;
   }
 
+  Future<Map<String, dynamic>> getVideos({required String url}) async {
+    final response = await _dio.get(
+      url,
+      options: Options(headers: {'Content-Type': 'application/json'}),
+    );
+    return response.data;
+  }
+
   Future<Map<String, dynamic>> post({
     required String image,
     // required String baseUrl,
@@ -35,7 +43,7 @@ class Apiservice {
       options: Options(
         headers: {
           'Content-Type': 'application/json',
-          "Api-Key": "HnSBP5TPOsJfi820bbTZtsRLo4QC7LSUzYFL5JLdGq29RSCrhk",
+          "Api-Key": "tQHcKy29mVKjZOHovZkFhDBjmFJbOJKQZLB6qXBUmrbdSIxo9j",
         },
       ),
     );
