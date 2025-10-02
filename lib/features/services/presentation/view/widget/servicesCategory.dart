@@ -9,6 +9,7 @@ import 'package:green_souq/features/services/presentation/cubit/change_amout/cha
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/features/services/presentation/view/widget/hire_workers.dart';
 import 'package:green_souq/features/services/presentation/view/widget/servicesDetailes.dart';
+import 'package:green_souq/main.dart';
 
 class ServicesCategory extends StatefulWidget {
   const ServicesCategory({super.key, required this.title});
@@ -77,7 +78,11 @@ class _ServicesCategoryState extends State<ServicesCategory> {
                                               'kg',
                                         )
                                       : ServicesDetailes(
-                                          isSaved: false,
+                                          price1: '',
+                                          rating1: '',
+                                          isSaved: savedList.contains(
+                                            state.images[index].name,
+                                          ),
                                           servicesType:
                                               servicesType[widget.title] ??
                                               'kg',

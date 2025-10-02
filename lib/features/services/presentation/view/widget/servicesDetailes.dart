@@ -4,7 +4,6 @@ import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 import 'package:green_souq/features/cart/presentation/cubit/addtocart/addtocart_cubit.dart';
-import 'package:green_souq/features/prefile/data/models/saved_model.dart';
 import 'package:green_souq/features/prefile/presentation/cubits/saved/saved_cubit.dart';
 import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
@@ -22,10 +21,14 @@ class ServicesDetailes extends StatefulWidget {
     required this.imageUrl,
     required this.servicesType,
     required this.isSaved,
+    required this.rating1,
+    required this.price1,
   });
   final String search;
   final String imageUrl;
   final String servicesType;
+  final String rating1;
+  final String price1;
   final bool isSaved;
   @override
   State<ServicesDetailes> createState() => _ServicesDetailesState();
@@ -38,7 +41,6 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
     String rating =
         '⭐ ${GenerateOtp().generateRandomNumber(1)}.${GenerateOtp().generateRandomNumber(1)} (${GenerateOtp().generateRandomNumber(3)})';
     int count = 1;
-    List amountList = [];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -60,7 +62,7 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
                 ),
               ),
               DetailesTopPart(
-                price: price,
+                price: widget.price1 == '' ? price : int.parse(widget.price1),
                 servicesType: widget.servicesType,
                 imageUrl: widget.imageUrl,
                 search: widget.search,
@@ -69,7 +71,10 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(rating, style: FontStyle.f14w400gray),
+                  Text(
+                    widget.rating1 == '' ? rating : widget.rating1,
+                    style: FontStyle.f14w400gray,
+                  ),
                   Row(
                     children: [
                       CustomIconButton(
@@ -85,7 +90,6 @@ class _ServicesDetailesState extends State<ServicesDetailes> {
                           final amount = BlocProvider.of<ChangeAmoutCubit>(
                             context,
                           ).amount;
-                          amountList.add(amount);
                           return Text(
                             '  ${amount == null ? 1 : amount} /${widget.servicesType} ',
                           );

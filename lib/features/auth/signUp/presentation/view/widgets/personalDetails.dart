@@ -8,6 +8,7 @@ import 'package:green_souq/features/auth/foregetPass/presentation/view/widgets/c
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 import 'package:green_souq/features/auth/signUp/data/savePersonalData.dart';
 import 'package:green_souq/features/auth/signUp/presentation/cubit/uplodimage/uplodimage_cubit.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -51,7 +52,9 @@ class _PersonalDetailsState extends State<PersonalDetails> {
 
             GestureDetector(
               onTap: () {
-                BlocProvider.of<UplodimageCubit>(context).uploadImage();
+                BlocProvider.of<UplodimageCubit>(
+                  context,
+                ).uploadImage(path: 'uploads', source: ImageSource.gallery);
               },
               child: BlocBuilder<UplodimageCubit, UplodimageState>(
                 builder: (context, state) {

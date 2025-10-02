@@ -49,10 +49,21 @@ class DetailesAppBar extends StatelessWidget {
               ),
             );
           },
-          icon: Icon(
-            isSaved
-                ? FontAwesomeIcons.solidBookmark
-                : FontAwesomeIcons.bookmark,
+          icon: BlocBuilder<SavedCubit, SavedState>(
+            builder: (context, state) {
+              if (state is AddToSaved) {
+                return const Icon(
+                  FontAwesomeIcons.solidBookmark,
+                  color: Colors.green,
+                );
+              }
+              return Icon(
+                color: Colors.green,
+                isSaved
+                    ? FontAwesomeIcons.solidBookmark
+                    : FontAwesomeIcons.bookmark,
+              );
+            },
           ),
         ),
       ],

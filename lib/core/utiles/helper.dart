@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:green_souq/core/utiles/widgets/customDialog.dart';
 import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 

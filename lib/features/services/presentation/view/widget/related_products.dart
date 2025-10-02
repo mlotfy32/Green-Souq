@@ -7,6 +7,7 @@ import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/features/services/presentation/view/widget/servicesDetailes.dart';
+import 'package:green_souq/main.dart';
 
 class RelatedProducts extends StatefulWidget {
   const RelatedProducts({
@@ -49,7 +50,9 @@ class _RelatedProductsState extends State<RelatedProducts> {
                   () => BlocProvider<ChangeAmoutCubit>(
                     create: (context) => ChangeAmoutCubit(),
                     child: ServicesDetailes(
-                      isSaved: false,
+                      price1: '',
+                      rating1: '',
+                      isSaved: savedList.contains(state.images[index].name),
                       search: state.images[index].name,
                       imageUrl: state.images[index].image,
                       servicesType: widget.servicesType,

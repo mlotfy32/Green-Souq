@@ -1,13 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:green_souq/core/utiles/extentions/extentions.dart';
 import 'package:green_souq/core/utiles/setup_service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:green_souq/core/utiles/styles/appImages.dart';
 import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
+import 'package:green_souq/features/auth/signUp/presentation/cubit/uplodimage/uplodimage_cubit.dart';
 import 'package:green_souq/features/services/domain/use_case/featch_image_use_case.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/features/services/presentation/view/widget/backText.dart';
+import 'package:green_souq/features/services/presentation/view/widget/cro_disease_view.dart';
+import 'package:green_souq/features/services/presentation/view/widget/crop_disease.dart';
 import 'package:green_souq/features/services/presentation/view/widget/servicesCategory.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
@@ -20,14 +24,22 @@ class ServicesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.navigateTo(
-          context: context,
-          child: BlocProvider<GetcategoryimagesCubit>(
-            create: (context) =>
-                GetcategoryimagesCubit(sl.get<FeatchImageUseCase>()),
-            child: ServicesCategory(title: servicesNames[index]),
-          ),
-        );
+        if (index == 5) {
+          Get.to(
+            () => BlocProvider<UplodimageCubit>(
+              create: (context) => UplodimageCubit(),
+              child: const CroDiseaseView(),
+            ),
+          );
+        } else
+          context.navigateTo(
+            context: context,
+            child: BlocProvider<GetcategoryimagesCubit>(
+              create: (context) =>
+                  GetcategoryimagesCubit(sl.get<FeatchImageUseCase>()),
+              child: ServicesCategory(title: servicesNames[index]),
+            ),
+          );
       },
       child: Container(
         width: 150,

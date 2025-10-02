@@ -13,15 +13,15 @@ class UplodimageCubit extends Cubit<UplodimageState> {
     emit(UplodimageProgress(progress: progress));
   }
 
-  uploadImage() async {
+  uploadImage({required String path, required ImageSource source}) async {
     final dio = Dio();
     final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: source);
 
     if (pickedFile == null) return;
 
     final file = File(pickedFile.path);
-    final fileName = 'uploads/${DateTime.now().millisecondsSinceEpoch}.png';
+    final fileName = '$path/${DateTime.now().millisecondsSinceEpoch}.png';
 
     const String projectUrl = "https://tnoyqwewkojfisfbgkme.supabase.co";
     const String apiKey =

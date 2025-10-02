@@ -29,6 +29,8 @@ class SavedItem extends StatelessWidget {
           create: (context) => ChangeAmoutCubit(),
           child: ServicesDetailes(
             search: name,
+            price1: price,
+            rating1: rating,
             imageUrl: imageUrl,
             servicesType: servicesType,
             isSaved: true,
@@ -65,7 +67,7 @@ class SavedItem extends StatelessWidget {
               children: [
                 Text(rating, style: FontStyle.f14w400gray),
                 const Spacer(),
-                Text('$price \$', style: FontStyle.f16w500black),
+                Text('$price\$', style: FontStyle.f16w500black),
 
                 Text('/$servicesType', style: FontStyle.f14w400gray),
               ],

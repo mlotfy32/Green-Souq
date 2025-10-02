@@ -9,4 +9,5 @@ class PrefsKeys {
   static const String userPostCode = "userPostCode";
 
   static const String userImage = "userImage";
+  static const String savedList = "savedList";
 }

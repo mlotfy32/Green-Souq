@@ -12,27 +12,33 @@ class Apiservice {
     required String endPoint,
   }) async {
     final response = await _dio.get(
-      'https://api.unsplash.com/search/photos?query=$search&client_id=3VNN_qlVDU4cXcUbrgJQxd0VbtREId2GZU61Xc2KmAc',
+      '$baseUrl$search$endPoint',
       options: Options(headers: {'Content-Type': 'application/json'}),
     );
-    log('$baseUrl$search$endPoint');
     return response.data;
-    // List<ImagesModel> images = [];
-    // try {
-    //   Response response = await _dio.get(
-    //     '$_baerUrl$search&client_id=3VNN_qlVDU4cXcUbrgJQxd0VbtREId2GZU61Xc2KmAc',
-    //     options: Options(headers: {'Content-Type': 'application/json'}),
-    //   );
-    //   for (var element in response.data['results']) {
-    //     images.add(ImagesModel.fromJson(element));
-    //   }
-    //   return right(images);
-    // } catch (e) {
-    //   if (e is DioException) {
-    //     return left(ServerFailure.fromDiorError(e));
-    //   } else {
-    //     return left(ServerFailure('Something went wrong please try again'));
-    //   }
-    // }
+  }
+
+  Future<Map<String, dynamic>> post({
+    required String image,
+    // required String baseUrl,
+    // required String search,
+    // required String endPoint,
+  }) async {
+    final response = await _dio.post(
+      data: {
+        "images": "$image",
+        "latitude": 49.207,
+        "longitude": 16.608,
+        "similar_images": true,
+      },
+      'https://crop.kindwise.com/api/v1/identification?details=common_names,type,taxonomy,eppo_code,eppo_regulation_status,gbif_id,image,images,wiki_url,wiki_description,treatment,description,symptoms,severity,spreading&language=en',
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          "Api-Key": "HnSBP5TPOsJfi820bbTZtsRLo4QC7LSUzYFL5JLdGq29RSCrhk",
+        },
+      ),
+    );
+    return response.data;
   }
 }

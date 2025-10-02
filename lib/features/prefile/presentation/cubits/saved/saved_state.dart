@@ -9,6 +9,8 @@ class SavedLoading extends SavedState {}
 
 class SavedEmpty extends SavedState {}
 
+class AddToSaved extends SavedState {}
+
 class SavedSuccess extends SavedState {
   final List<SavedModel> data;
 

@@ -1,10 +1,17 @@
+import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:get/get.dart';
 import 'package:green_souq/core/utiles/services/apiService.dart';
+import 'package:green_souq/features/services/data/models/disease_model.dart';
 import 'package:green_souq/features/services/data/models/imagesModel.dart';
+import 'package:green_souq/features/services/domain/entites/disease_entite.dart';
 import 'package:green_souq/features/services/domain/entites/images_entite.dart';
+import 'package:green_souq/core/utiles/helper.dart';
 
 abstract class ServicesRemoteDataSource {
   Future<List<ImagesEntite>> featchImages({required String search});
+  Future<List<DiseaseEntite>> featchDeasices({required String image});
 }
 
 class ServicesRemoteDataSourceImp extends ServicesRemoteDataSource {
@@ -30,5 +37,20 @@ class ServicesRemoteDataSourceImp extends ServicesRemoteDataSource {
       images.add(ImagesModel.fromJson(element));
     }
     return images;
+  }
+
+  @override
+  Future<List<DiseaseEntite>> featchDeasices({required String image}) async {
+    List<DiseaseEntite> diseases = [];
+
+    Map<String, dynamic> data = await apiservice.post(image: image);
+    if (data['result']['is_plant']['binary'] == false) {
+      Get.back();
+      Get.snackbar('Green Souq', 'Please select a plant image.');
+    }
+    for (var element in data['result']['disease']['suggestions']) {
+      diseases.add(DiseaseModel.fromJson(element));
+    }
+    return diseases;
   }
 }

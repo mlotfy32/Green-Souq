@@ -11,6 +11,7 @@ import 'package:green_souq/features/services/domain/use_case/featch_image_use_ca
 import 'package:green_souq/features/services/presentation/cubit/change_amout/change_amout_cubit.dart';
 import 'package:green_souq/features/services/presentation/cubit/getcategoryimages/getcategoryimages_cubit.dart';
 import 'package:green_souq/features/services/presentation/view/widget/servicesDetailes.dart';
+import 'package:green_souq/main.dart';
 
 class HomeTabView extends StatefulWidget {
   const HomeTabView({super.key});
@@ -46,7 +47,9 @@ class _HomeTabViewState extends State<HomeTabView> {
                   child: BlocProvider<ChangeAmoutCubit>(
                     create: (context) => ChangeAmoutCubit(),
                     child: ServicesDetailes(
-                      isSaved: false,
+                      price1: '',
+                      rating1: '',
+                      isSaved: savedList.contains(name[index]),
 
                       search: name[index],
                       imageUrl: images[index],

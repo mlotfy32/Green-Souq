@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:green_souq/core/utiles/widgets/customLoadingDialog.dart';
 import 'package:green_souq/core/utiles/widgets/customeLinearButton.dart';
 import 'package:green_souq/core/utiles/styles/fontStyle.dart';
 import 'package:green_souq/features/auth/foregetPass/data/generateOtp.dart';
+import 'package:green_souq/features/prefile/presentation/cubits/saved/saved_cubit.dart';
 
 class FeaturedProductItem extends StatelessWidget {
   const FeaturedProductItem({
@@ -50,23 +52,20 @@ class FeaturedProductItem extends StatelessWidget {
 
               Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: InkWell(
-                  onTap: () {},
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.white54,
-                          offset: Offset(0.1, 0.1),
-                        ),
-                      ],
-                    ),
-                    child: const Icon(
-                      Icons.bookmark_border_rounded,
-                      size: 31,
-                      color: Colors.black,
-                    ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.white54,
+                        offset: Offset(0.1, 0.1),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.bookmark_border_rounded,
+                    size: 31,
+                    color: Colors.black,
                   ),
                 ),
               ),
