@@ -54,8 +54,3 @@
 # Project Video
 https://github.com/user-attachments/assets/6459fd95-3f98-4665-b6a3-fd586fc21225
 
-
-
-📱 Fully responsive animated UI following Material Design 3.
-
-⚙️ Stable, testable, and production-ready project with CI/CD pipeline.
