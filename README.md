@@ -12,7 +12,7 @@
 
 🌐 Backend & APIs: 🔗 RESTful API Integration, 🟢 Supabase.
 
-🔐 Authentication: 🔑 Firebase Authentication (Phone Login & Password Reset).
+🔐 Authentication: 🔑 Firebase Auth (Phone, Google, Facebook).
 
 💾 Database & Local Storage: 🗃️ Hive, 🧠 Shared Preferences, 🟢 Supabase Database.
 
