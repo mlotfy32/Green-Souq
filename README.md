@@ -6,9 +6,9 @@
 
 💬 Language: 💻 Dart.
 
-🔄 State Management: 🧩 get_it.
+🔄 State Management: Cubit (BLoC).
 
-🧱 Dependency Injection: RESTful API Integration.
+🧱 Dependency Injection: 🧩 get_it.
 
 🌐 Backend & APIs: 🔗 RESTful API Integration, 🟢 Supabase.
 
@@ -49,7 +49,7 @@
 🧱 Strong Cubit (BLoC) state management with error handling and loading states.
 
 # Project Screens
-![WhatsApp Image 2025-10-10 at 22 39 57_8f1aed4f](https://github.com/user-attachments/assets/5d5fcdf8-3498-4fa3-9937-d0d5d46280c9)
+!(https://github.com/user-attachments/assets/5d5fcdf8-3498-4fa3-9937-d0d5d46280c9)
 
 # Project Video
 https://github.com/user-attachments/assets/6459fd95-3f98-4665-b6a3-fd586fc21225
